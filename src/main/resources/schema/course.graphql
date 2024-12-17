@@ -1,0 +1,38 @@
+scalar Date
+scalar PositiveInt
+scalar DateTime
+scalar NonNegativeInt
+scalar Url
+
+type Query{
+    books(author: String): [Book]
+    booksByReleaseHistory(releasedInput: ReleaseHistoryInput!): [Book]
+    mobileApps(mobileAppFilter: MobileAppFilter): [MobileApp]
+    allHellos : [Hello]
+
+
+    me: User!
+    problemLatestList: [Problem!]
+    itemSearch(filter: SearchItemFilter): [SearchableItem]
+    problemDetail(id: ID!): Problem!
+}
+
+
+type Mutation {
+    addHello(helloInput: HelloInput) : Int
+    changeHelloText(helloInput: HelloInput): [Hello]
+
+    userCreate(user: UserCreateInput!): UserResponse!
+    userLogin(user: UserLoginInput!): UserResponse!
+    userActivation(user: UserActivationInput!): UserActivationResponse!
+    problemCreate(problem: ProblemCreateInput!): ProblemResponse!
+    solutionCreate(solution: SolutionCreateInput!): SolutionResponse!
+    solutionVote(vote: SolutionVoteInput!): SolutionResponse!
+}
+
+type Subscription {
+    randomStock: Stock
+
+    problemAdded: Problem!
+    solutionVoteChanged(solutionId: ID!): Solution!
+}
